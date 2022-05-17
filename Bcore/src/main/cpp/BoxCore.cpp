@@ -139,6 +139,7 @@ void registerMethod(JNIEnv *jenv) {
 }
 
 JNIEXPORT jint JNI_OnLoad(JavaVM *vm, void *reserved) {
+    ALOGE("=================JNI_OnLoad==============");
     JNIEnv *env;
     VMEnv.vm = vm;
     if (vm->GetEnv(reinterpret_cast<void **>(&env), JNI_VERSION_1_6) != JNI_OK) {

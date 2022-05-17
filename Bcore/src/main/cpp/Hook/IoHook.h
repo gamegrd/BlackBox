@@ -6,6 +6,7 @@
 #define BLACKBOX_IOHOOK_H
 
 #include "dobby.h"
+#include "Log.h"
 
 class IoHook {
 public:
@@ -18,6 +19,7 @@ public:
         IoHook* ctx = nullptr;
         if (!ctx){
             ctx =  new IoHook();
+            ALOGD("=========IoHook===========");
         }
         return ctx;
     }

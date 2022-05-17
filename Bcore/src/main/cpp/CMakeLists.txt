@@ -6,20 +6,17 @@
 cmake_minimum_required(VERSION 3.4.1)
 
 # opt/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-x86_64/bin/clang++ --target=armv7-none-linux-androideabi21 --sysroot=/opt/android-sdk/ndk/24.0.8215888/toolchains/llvm/prebuilt/linux-x86_64/sysroot  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security  -fomit-frame-pointer -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -fno-limit-debug-info  -static-libstdc++ -Wl,--build-id=sha1 -Wl,--no-rosegment -Wl,--fatal-warnings -Wl,--no-undefined -Qunused-arguments -Wl,--gc-sections thrid/Dobby/example/CMakeFiles/android_example.dir/main.cc.o thrid/Dobby/example/CMakeFiles/android_example.dir/android_common_api.cc.o  -o /home/harold/work/android/BlackBox/Bcore/build/android_example  /home/harold/work/android/BlackBox/Bcore/build/libdobby.a -llog -latomic -lm && :
-
-message("CMAKE_MODULE_PATH:${CMAKE_MODULE_PATH}")
-set(CMAKE_ARCHIVE_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../build)
-set(CMAKE_LIBRARY_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../build)
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/../../../build)
-
-set(DOBBY_GENERATE_SHARED OFF)
-add_subdirectory(thrid/Dobby)
+# ${CMAKE_SOURCE_DIR}/thrid/opencv/sdk/native/staticlibs/${ANDROID_ABI}/libopencv_imgproc.a
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
 # You can define multiple libraries, and CMake builds them for you.
 # Gradle automatically packages shared libraries with your APK.
 include_directories(./thrid/Dobby/include)
+set(DOBBY_LIB "${CMAKE_CURRENT_LIST_DIR}/thrid/Dobby/lib/${ANDROID_ABI}/libdobby.a" )
+#include_directories(${CMAKE_SOURCE_DIR}/include)
+
+
 
 include_directories(JniHook)
 include_directories(./)
@@ -59,7 +56,9 @@ find_library( # Sets the name of the path variable.
 
 target_link_libraries( # Specifies the target library.
         blackbox
-        dobby
+
+        ${DOBBY_LIB}
+
         # Links the target library to the log library
         # included in the NDK.
         ${log-lib}
