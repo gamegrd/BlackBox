@@ -7,6 +7,7 @@ import android.content.pm.PackageManager;
 import android.os.Environment;
 import android.os.Process;
 import android.text.TextUtils;
+import android.util.Log;
 
 import java.io.File;
 import java.util.HashMap;
@@ -47,6 +48,7 @@ public class IOCore {
 
     // /data/data/com.google/  ----->  /data/data/com.virtual/data/com.google/
     public void addRedirect(String origPath, String redirectPath) {
+        Log.d(TAG, "xgDebug: addRedirect: " + origPath + "  ==> "+  redirectPath);
         if (TextUtils.isEmpty(origPath) || TextUtils.isEmpty(redirectPath) || mRedirectMap.get(origPath) != null)
             return;
         //Add the key to TrieTree
@@ -60,6 +62,7 @@ public class IOCore {
     }
 
     public void addBlackRedirect(String path) {
+        Log.d(TAG, "xgDebug: addBlackRedirect: " + path );
         if (TextUtils.isEmpty(path))
             return;
         sBlackTree.add(path);
