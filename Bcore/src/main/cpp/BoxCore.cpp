@@ -12,7 +12,7 @@
 #include <Hook/BinderHook.h>
 #include <Hook/RuntimeHook.h>
 #include "Utils/HexDump.h"
-
+#include "Hook/IoHook.h"
 struct {
     JavaVM *vm;
     jclass NativeCoreClass;
@@ -69,9 +69,10 @@ JavaVM *BoxCore::getJavaVM() {
 
 void nativeHook(JNIEnv *env) {
     BaseHook::init(env);
+    IoHook::get_instance();
     UnixFileSystemHook::init(env);
     VMClassLoaderHook::init(env);
-//    RuntimeHook::init(env);
+    //RuntimeHook::init(env);
     BinderHook::init(env);
 }
 
