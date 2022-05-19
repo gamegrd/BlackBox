@@ -27,6 +27,7 @@ public class GmsCore {
         GOOGLE_SERVICE.add(GMS_PKG);
         GOOGLE_SERVICE.add(GSF_PKG);
         GOOGLE_SERVICE.add("com.google.android.gsf.login");
+        GOOGLE_SERVICE.add("com.google.android.gsf.gservices");
         GOOGLE_SERVICE.add("com.google.android.backuptransport");
         GOOGLE_SERVICE.add("com.google.android.backup");
         GOOGLE_SERVICE.add("com.google.android.configupdater");
